@@ -1,0 +1,32 @@
+# version: "3.8"
+services:
+  backend-db:
+    image: postgres:latest
+    container_name: backend-db
+    volumes:
+      - db-data:/data/db
+    networks:
+      - app-network
+
+  zurich-backend:
+    build:
+      context: ../                
+      dockerfile: ./Dockerfile 
+    image: zurich-backend:latest
+    container_name: zurich-backend
+    ports:
+      - 3001:3001
+    networks:
+    - app-network
+    env_file: ../.env
+    depends_on:
+      - backend-db
+
+volumes:
+  db-data:
+
+networks:
+  app-network:
+    driver: bridge
+
+# docker-compose -f docker/docker-compose.yaml up -d --build

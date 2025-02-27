@@ -1,0 +1,16 @@
+/dist
+/node_modules
+/build
+.next
+
+node_modules
+dist
+*.log
+*.md
+.git
+
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
